@@ -1,16 +1,16 @@
 BITS 16    ; Tell NASM this is 16 bit code
-ORG 0x7C00 ; tell NASM to output at offset 0x7C00
+ORG 0x7C00 ; Tell NASM to output at offset 0x7C00
 
 BOOT:
     MOV SI, HELLO ; Point SI register to hello label memory location
     MOV AH, 0x0E  ; 0x0E means write character in TTY mode
 
 LOOP:
-    LODSB    ; Load byte at address DS:SI into AL
+    LODSB     ; Load byte at address DS:SI into AL
     OR AL, AL ; Perform logical OR on the AL register
-    JZ HALT  ; If AL is zero, jump to HALT
-    INT 0x10 ; Runs BIOS interrupt 0x10 - video services
-    JMP LOOP ; Jump and loop again
+    JZ HALT   ; If AL is zero, jump to HALT
+    INT 0x10  ; Runs BIOS interrupt 0x10 - video services
+    JMP LOOP  ; Jump and loop again
 
 HALT:
     CLI ; Clear interrupt flag
