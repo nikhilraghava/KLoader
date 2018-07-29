@@ -1,7 +1,7 @@
 BITS 16    ; 16-bit real-mode instructions
 ORG 0x7C00 ; Expect the bootloader to be loaded into memory at 0x7C00
 
-STACK:  MOV AX, 0x7C00 ; Set AX equal to the location of xBoot
+STACK:  MOV AX, 0x7C0  ; Set AX equal to the location of xBoot
     	ADD AX, 0x20   ; Skip over the size of the bootloader divided by 16
 	MOV SS, AX     ; Set Stack Segment (SS) to this location
 	MOV SP, 0x400  ; Set SS:SP at the top of our 1K stack
