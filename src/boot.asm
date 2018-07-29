@@ -11,14 +11,14 @@ BOOT:	MOV SI, BOOTMSG ; Set the address of the null-terminated string message to
 
 LOOP:	LODSB     ; Load byte at address DS:SI into AL
 	OR AL, AL ; Trigger Zero Flag (ZF) if result is zero
-	JZ HALT   ; Jump to HALT since ZF is set
+	JZ HALT   ; Jump to HALT if ZF is set
 	INT 0x10  ; Run BIOS interrupt vector and print the character
 	JMP LOOP  ; Repeat for the next character
 
 HALT:	CLI ; Clear the interrupt flag
 	HLT ; Halt the execution
 
-BOOTMSG: DB "Hello, I am xBoot", 0 ; The message we want to display
+BOOTMSG: DB 0x0A, "Hello, I am xBoot", 0 ; Display the message on a new line
 
 TIMES 510 - ($-$$) DB 0 ; Pad the remaining 510-bytes with zeros
 DW 0xAA55               ; Boot signature
