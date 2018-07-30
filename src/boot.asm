@@ -7,9 +7,9 @@ STACK:  MOV AX, 7C0H  ; Set AX equal to the location of xBoot
 	MOV SP, 400H  ; Set SS:SP at the top of our 1K stack
 
 BOOT:	MOV SI, BOOTMSG ; Set the address of the null-terminated string message to the SI register
-	MOV AH, 0EH      ; Output characters in TTY mode
+	MOV AH, 0EH     ; Output characters in TTY mode
 
-LOOP:	LODSB     ; Load byte at address DS:SI into AL
+LOOP:	LODSB     ; Load byte at address DS:SI into AL and increment SI
 	OR AL, AL ; Trigger Zero Flag (ZF) if result is zero
 	JZ HALT   ; Jump to HALT if ZF is set
 	INT 10H   ; Run BIOS interrupt vector and print the character
