@@ -15,10 +15,10 @@ BOOT: MOV SI, BOOTMSG ; Set the address of the null-terminated string message to
 DISP: MOV AH, 0EH ; Output characters in TTY mode
 
 .DCHAR: LODSB      ; Load byte at address DS:SI into AL and increment SI
-	OR AL, AL  ; Trigger Zero Flag (ZF) if result is zero
-	JZ .DONE   ; Jump to HALT if ZF is set
-	INT 10H    ; Run BIOS interrupt vector and print the character
-	JMP .DCHAR ; Repeat for the next character
+        OR AL, AL  ; Trigger Zero Flag (ZF) if result is zero
+        JZ .DONE   ; Jump to HALT if ZF is set
+        INT 10H    ; Run BIOS interrupt vector and print the character
+        JMP .DCHAR ; Repeat for the next character
 
 .DONE: RET ; Return 
 
