@@ -28,5 +28,3 @@ $ ./assemble.sh
 ```
 
 QEMU will open up in a separate window.
-
-I have written a detailed blog post on xBoot [here](https://sites.google.com/view/xcoder/computing/xboot-a-tiny-x86-bootloader).
