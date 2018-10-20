@@ -14,19 +14,19 @@ BOOT: MOV SI, BOOTMSG ; Set the address of the null-terminated string message to
 
 DISP: MOV AH, 0EH ; Output characters in TTY mode
 
-.DCHAR: LODSB      ; Load byte at address DS:SI into AL and increment SI
-        OR AL, AL  ; Trigger Zero Flag (ZF) if result is zero
-        JZ .DONE   ; Jump to HALT if ZF is set
-        INT 10H    ; Run BIOS interrupt vector and print the character
-        JMP .DCHAR ; Repeat for the next character
+DCHAR: LODSB      ; Load byte at address DS:SI into AL and increment SI
+       OR AL, AL  ; Trigger Zero Flag (ZF) if result is zero
+       JZ DONE    ; Jump to HALT if ZF is set
+       INT 10H    ; Run BIOS interrupt vector and print the character
+       JMP DCHAR  ; Repeat for the next character
 
-.DONE: RET ; Return 
+DONE: RET ; Return 
 
 HALT: CLI ; Clear the interrupt flag
       HLT ; Halt the execution
 
-BOOTMSG: DB 0AH, "Hello, I am xBoot. A minimalistic x86 bootloader.", 0 ; Display the message on a new line
-SCNDMSG: DB 0AH, 0DH, "Written by Nikhil Raghavendra", 0                ; Display the message on a new line with CR
+BOOTMSG: DB 0AH, "This is xBoot.", 0 ; Display the message on a new line
+SCNDMSG: DB 0AH, 0DH, "A minimalistic x86 bootloader from s u d o_", 0 ; Display the message on a new line with CR
 
 TIMES 510 - ($-$$) DB 0 ; Pad the remaining 510-bytes with zeros
 DW 0xAA55               ; Boot signature in little-endian order
