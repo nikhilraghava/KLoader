@@ -26,7 +26,7 @@ HALT: CLI ; Clear the interrupt flag
       HLT ; Halt the execution
 
 BOOTMSG: DB 0AH, "This is xBoot.", 0 ; Display the message on a new line
-SCNDMSG: DB 0AH, 0DH, "A minimalistic x86 bootloader from s u d o_", 0 ; Display the message on a new line with CR
+SCNDMSG: DB 0AH, 0DH, "A minimalistic x86 bootloader from s u d o", 0 ; Display the message on a new line with CR
 
 TIMES 510 - ($-$$) DB 0 ; Pad the remaining 510-bytes with zeros
 DW 0xAA55               ; Boot signature in little-endian order
